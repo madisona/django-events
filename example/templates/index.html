@@ -1,0 +1,22 @@
+{% load event_tags %}
+<html>
+    <head>
+        <title>Events Page</title>
+        <style type="text/css">
+            body {color: #333;}
+            h1 {text-shadow: 2px 2px #ccc}
+        </style>
+    </head>
+    <body>
+        <h1>Upcoming Events</h1>
+        <ul>
+        {% upcoming_events 10 %}
+            {% for event in upcoming_events %}
+                <li>{{ event.start_time|date:"m-d-Y H:i A" }}: {{ event }} - {{ event.location }}
+            {% empty %}
+                <li>No Upcoming Events, please check back soon.
+            {% endfor %}
+        {% endupcoming_events %}
+        </ul>
+    </body>
+</html>
